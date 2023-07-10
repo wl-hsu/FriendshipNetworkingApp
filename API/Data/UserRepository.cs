@@ -1,6 +1,8 @@
 using API.DTOs;
 using API.Entities;
 using API.Interfaces;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
@@ -9,9 +11,27 @@ namespace API.Data
     {
         private readonly DataContext _datacontext;
 
-        public UserRepository(DataContext datacontext)
+        private readonly IMapper _mapper;
+
+        public UserRepository(DataContext datacontext, IMapper mapper)
         {
             _datacontext = datacontext;
+            _mapper = mapper;
+        }
+
+        public async Task<MemberDto> GetMemberAsync(string username)
+        {
+            return await _datacontext.Users
+                .Where(x => x.UserName == username.ToLower())
+                .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
+                .SingleOrDefaultAsync();
+        }
+
+        public async Task<IEnumerable<MemberDto>> GetMembersAsync()
+        {
+            return await _datacontext.Users
+                .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
+                .ToListAsync();
         }
 
         public async Task<AppUser> GetUserByIdAsync(int id)
@@ -21,12 +41,16 @@ namespace API.Data
 
         public async Task<AppUser> GetUserByUsernameAsync(string username)
         {
-            return await _datacontext.Users.SingleOrDefaultAsync(x => x.UserName == username.ToLower());
+            return await _datacontext.Users
+                .Include(p => p.Photos)
+                .SingleOrDefaultAsync(x => x.UserName == username.ToLower());
         }
 
         public async Task<IEnumerable<AppUser>> GetUsersAsync()
         {
-            return await _datacontext.Users.ToListAsync();
+            return await _datacontext.Users
+                .Include(p => p.Photos)
+                .ToListAsync();
         }
 
         public async Task<bool> SaveAllAsync()
