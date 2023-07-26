@@ -1,6 +1,6 @@
 [
     {
-        "UserName": "SailorMoon",
+        "Username": "SailorMoon",
         "Gender": "female",
         "DateOfBirth": "1990-06-30",
         "KnownAs": "Moon",
@@ -19,7 +19,7 @@
         ]
     },
     {
-        "UserName": "SailorMercury",
+        "Username": "SailorMercury",
         "Gender": "female",
         "DateOfBirth": "1991-09-10",
         "KnownAs": "Mercury",
@@ -38,7 +38,7 @@
         ]
     },
     {
-        "UserName": "SailorMars",
+        "Username": "SailorMars",
         "Gender": "female",
         "DateOfBirth": "1992-04-17",
         "KnownAs": "Mars",
@@ -57,7 +57,7 @@
         ]
     },
     {
-        "UserName": "SailorJupiter",
+        "Username": "SailorJupiter",
         "Gender": "female",
         "DateOfBirth": "1994-12-05",
         "KnownAs": "Jupiter",
@@ -76,7 +76,7 @@
         ]
     },
     {
-        "UserName": "SailorVenus",
+        "Username": "SailorVenus",
         "Gender": "female",
         "DateOfBirth": "1990-10-22",
         "KnownAs": "Venus",
@@ -95,7 +95,7 @@
         ]
     },
     {
-        "UserName": "AriesMu",
+        "Username": "AriesMu",
         "Gender": "male",
         "DateOfBirth": "1994-03-27",
         "KnownAs": "Aries",
@@ -114,7 +114,7 @@
         ]
     },
     {
-        "UserName": "TaurusAldebaran",
+        "Username": "TaurusAldebaran",
         "Gender": "male",
         "DateOfBirth": "1985-05-08",
         "KnownAs": "Taurus",
@@ -133,7 +133,7 @@
         ]
     },
     {
-        "UserName": "LeoAiolia",
+        "Username": "LeoAiolia",
         "Gender": "male",
         "DateOfBirth": "1998-08-16",
         "KnownAs": "Leo",
@@ -152,7 +152,7 @@
         ]
     },
     {
-        "UserName": "SagittariusAiolos",
+        "Username": "SagittariusAiolos",
         "Gender": "male",
         "DateOfBirth": "1987-11-30",
         "KnownAs": "Sagittarius",
@@ -171,7 +171,7 @@
         ]
     },
     {
-        "UserName": "VirgoShaka",
+        "Username": "VirgoShaka",
         "Gender": "male",
         "DateOfBirth": "1990-09-19",
         "KnownAs": "Virgo",
