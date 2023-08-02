@@ -15,5 +15,7 @@
 }
 
 .rounded-circle {
-    max-height: 50px;
+    /* max-height: 50px; */
+    height: 50px;
+    width: 50px;
 }
