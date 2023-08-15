@@ -33,6 +33,7 @@ namespace API.Controllers
             this._photoService = photoService;
         }
 
+
         [HttpGet]
         public async Task<ActionResult<PagedList<MemberDto>>> GetUsers([FromQuery]UserParams userParams)
         {
