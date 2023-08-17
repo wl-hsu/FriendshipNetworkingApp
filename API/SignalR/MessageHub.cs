@@ -34,9 +34,9 @@ namespace API.SignalR
             var otherUser = httpContext.Request.Query["user"];
             var groupName = GetGroupName(Context.User.GetUsername(), otherUser);
             await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
-            await AddToGroup(groupName);
+            var group = await AddToGroup(groupName);
+            await Clients.Group(groupName).SendAsync("UpdatedGroup", group);
             var messages = await _messageRepository.GetMessageThread(Context.User.GetUsername(), otherUser);
-
             await Clients.Group(groupName).SendAsync("ReceiveMessageThread", messages);
         }
 
@@ -85,7 +85,8 @@ namespace API.SignalR
 
         public override async Task OnDisconnectedAsync(Exception ex)
         {   
-            await RemoveFromMessageGroup();
+            var group = await RemoveFromMessageGroup();
+            await Clients.Group(group.Name).SendAsync("UpdatedGroup");
             await base.OnDisconnectedAsync(ex);
         }
         private string GetGroupName(string caller, string other)
