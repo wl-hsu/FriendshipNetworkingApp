@@ -5,6 +5,7 @@ using API.Interfaces;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using SQLitePCL;
 
 namespace API.Data
 {
@@ -61,16 +62,16 @@ namespace API.Data
                 .SingleOrDefaultAsync(x => x.UserName == username.ToLower());
         }
 
+        public async Task<string> GEtUserGender(string username)
+        {
+            return await _datacontext.Users.Where(x => x.UserName == username).Select(x => x.Gender).FirstOrDefaultAsync();
+        }
+
         public async Task<IEnumerable<AppUser>> GetUsersAsync()
         {
             return await _datacontext.Users
                 .Include(p => p.Photos)
                 .ToListAsync();
-        }
-
-        public async Task<bool> SaveAllAsync()
-        {
-            return await _datacontext.SaveChangesAsync() > 0;
         }
 
         public void Update(AppUser user)
