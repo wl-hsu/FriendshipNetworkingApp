@@ -15,10 +15,13 @@
                 <li *appHasRole="['Admin', 'Moderator']" class="nav-item">
                     <a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a>
                 </li>
+                <li class="nav-item" *appHasRole="['Admin']">
+                    <a class="nav-link" routerLink="/errors" routerLinkActive="active">errors</a>
+                </li>
             </ng-container>
-            <li class="nav-item" >
+            <!-- <li class="nav-item" *appHasRole="['Admin']">
                 <a class="nav-link" routerLink="/errors" routerLinkActive="active">errors</a>
-            </li>
+            </li> -->
         </ul>
         <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
             <img src="{{user.photoUrl || './assets/user.png'}}" alt="user photo">

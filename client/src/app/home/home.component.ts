@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from '../_services/account.service';
+import { MembersService } from '../_services/members.service';
+import { UserParams } from '../_models/userParams';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +12,10 @@ export class HomeComponent implements OnInit {
 
   registerMode = false;
   users: any;
-  constructor() { }
+  model: any = {}
+  router: any;
+  constructor(public accountService: AccountService) { 
+  }
 
   ngOnInit(): void {
   }
