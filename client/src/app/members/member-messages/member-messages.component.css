@@ -8,6 +8,21 @@
     padding: 0;
 }
 
+.chat::-webkit-scrollbar {
+  width: 5px;
+}
+
+.chat::-webkit-scrollbar-thumb {
+  background: #f603a1a6;
+  border-radius: 5px;
+
+}
+
+.chat::-webkit-scrollbar-track {
+  /* background: rgba(255, 0, 0, 0.179); */
+  background: rgba(255, 255, 255, 0.4);
+}
+
 .chat li {
     margin-bottom: 10px;
     padding-bottom: 10px;
@@ -19,3 +34,4 @@
     height: 50px;
     width: 50px;
 }
+
