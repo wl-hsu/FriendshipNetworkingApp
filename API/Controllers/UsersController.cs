@@ -56,7 +56,10 @@ namespace API.Controllers
         [HttpGet("{username}")]
         public async Task<ActionResult<MemberDto>> GetUserByUsername(string username)
         {
-            return await _uow.UserRepository.GetMemberAsync(username);
+            var currentUsername = User.GetUsername();
+            return await _uow.UserRepository.GetMemberAsync(username.ToLower(),
+                isCurrentUser: currentUsername == username.ToLower()
+            );
         }
 
         [HttpPut]
@@ -90,11 +93,9 @@ namespace API.Controllers
                 PublicId = result.PublicId
             };
 
-            if (user.Photos.Count == 0) photo.IsMain = true;
-
             user.Photos.Add(photo);
 
-           if (await _uow.Complete()) 
+            if (await _uow.Complete()) 
             {
                 return CreatedAtAction(nameof(GetUserByUsername), 
                     new {username = user.UserName}, _mapper.Map<PhotoDto>(photo));
@@ -130,7 +131,7 @@ namespace API.Controllers
         {
             var user = await _uow.UserRepository.GetUserByUsernameAsync(User.GetUsername());
 
-            var photo = user.Photos.FirstOrDefault(x => x.Id == photoId);
+            var photo = await _uow.PhotoRepository.GetPhotoById(photoId);
 
             if (photo == null) return NotFound();
 
